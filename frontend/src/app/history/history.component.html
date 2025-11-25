@@ -1,0 +1,34 @@
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<app-search-field
+  [options]="searchOptions"
+  (searchChanged)="onSearchChanged($event)">
+</app-search-field>
+<div id="HistoryBox">
+    <table>
+        <thead>
+          <tr>
+            <th>Bearbeiter</th>
+            <th>Herst.-S/N</th>
+            <th>Datum</th>
+            <th>Uhrzeit</th>
+            <th>Aktion</th>
+            <th>Änderungen</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let history of filteredHistories">
+            <td>{{ history.first_name + ", " + history.last_name }}</td>
+            <td>{{ history.manufacturer_name + "-" + history.serial_number}}</td>
+            <td>{{ history.date }}</td>
+            <td>{{ history.time }}</td>
+            <td>{{ history.aktion }}</td>
+            <td title="{{history.description}}">{{ history.description.split('\n')[0].length > 15 ? history.description.split('\n')[0].substring(0, 15) + '...' : history.description.split('\n')[0]}}</td>
+            <td>
+                <div id="extendBtn" (click)="showHistoryDetails(history.id)">
+                <img src="../../assets/Icons/arrow_forward_right.svg" loading="lazy"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

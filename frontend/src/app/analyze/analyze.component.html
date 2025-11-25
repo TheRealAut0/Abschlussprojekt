@@ -1,0 +1,6 @@
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<h2>Welche Analyse möchten Sie ausführen?</h2>
+<select name="analyzeId" id="analyzeId" (change)="onChange($event)">
+    <option *ngFor="let Analyze of Analysis" value={{Analyze.id}}>{{Analyze.title}}</option>
+</select>
+<button id="runbtn" (click)="showAyalyzeResult()" >Ausführen</button>

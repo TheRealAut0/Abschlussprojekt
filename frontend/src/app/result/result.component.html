@@ -1,0 +1,21 @@
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<div id="resultBox" *ngIf="loading === false">
+    <div id="closeBtn" ><img routerLink="/analyze" src="../../assets/Icons/close_black.svg" id="closeBtnImg" alt="" loading="lazy"></div>
+    <table>
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th *ngFor="let header of tableHeaders">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of analyzeResult; let i = index">
+            <td data-label="Index"> {{ i + 1 }} </td>
+            <td *ngFor="let header of tableHeaders" [attr.data-label]="header">
+              {{ row[header] }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>

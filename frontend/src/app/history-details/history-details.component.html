@@ -1,0 +1,31 @@
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<div id="DetailsBox">
+    <div id="heading">Details Ansicht
+        <div id="closeBtn" routerLink="/history"><img src="../../assets/Icons/close.png" id="closeBtnImg" alt="" loading="lazy"></div>
+    </div>
+    <div class="box" id="gridsBox">
+    <div class="box" id="GrindBox1"> 
+   
+        <h4>Bearbeiter:</h4> <span>{{history.first_name + ", " + history.last_name}}</span>
+     </div>
+    <div class="box" id="GrindBox2">
+        <h4>Herst.-S/N:</h4> <span>{{history.manufacturer_name + "-" + history.serial_number}}</span>
+    </div>
+    <div class="box" id="GrindBox3">
+        <h4>Datum:</h4> <span>{{history.date}}</span>
+    </div>
+    <div class="box" id="GrindBox4">
+        <h4>Uhrzeit:</h4> <span>{{history.time}}</span>
+    </div>
+    <div class="box" id="GrindBox5">
+        <h4>Aktion:</h4> <span>{{history.aktion}}</span>
+    </div>
+    <div class="box" id="GrindBox6"></div>
+    <div class="box" id="GrindBox7">
+        <h4 id="descriptionHeading" >Änderungen:</h4>
+        <div id="description" [innerHTML]="sanitizeDescription(history.description)">
+          
+        </div>
+    </div>
+    </div>
+</div>

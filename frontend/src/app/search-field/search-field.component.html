@@ -1,0 +1,11 @@
+<div id="SearchBox">
+  <div class="menu">
+    <select id="custom-select" (change)="onChange()">
+      <option *ngFor="let opt of options" [value]="opt.value">
+        {{ opt.label }}
+      </option>
+    </select>
+  </div>
+  <input id="searchInput" placeholder="Suchen" (input)="onChange()" />
+  <img id="SearchBoxImg" src="../../assets/Icons/search.png" loading="lazy" />
+</div>

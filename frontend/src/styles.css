@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    overflow: hidden;
+}
+app-home{
+    padding-top: 2.5%;
+    height: 90vh;
+}
+
+app-analyze{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap:1%;
+}
+
+
+app-hardware-details{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap:1%;
+}
+
+
+app-history-details{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap:1%;
+}
+
+
+app-result{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap:1%;
+}
+
+app-history{
+    padding-top: 2.5%;
+}
+
+app-alert{
+    height: 100%;
+}

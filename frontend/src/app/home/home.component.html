@@ -1,0 +1,16 @@
+
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<app-hardware-create (submitted)="getHardwareListWithNotification('success','Erfolgreich hinzugefügt!')"></app-hardware-create>  
+<app-search-field
+  [options]="searchOptions"
+  (searchChanged)="onSearchChanged($event)">
+</app-search-field>
+<app-hardware-list 
+  [hardwarelists]="filteredlist"
+  (submittedsuccess)="getHardwareListWithNotification('success', 'Hardware erfolgreich aktualisiert')"
+  (submittederror)="getHardwareListWithNotification('error', 'Fehler beim aktualisieren des Hardware!')">
+</app-hardware-list>
+
+
+
+

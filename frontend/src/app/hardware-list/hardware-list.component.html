@@ -1,0 +1,115 @@
+<div id="listbox">
+  <div id="flexibleBox">
+    <app-loading-screen-spinner *ngIf="loadingList === true"></app-loading-screen-spinner>
+    <div id="listheadingBox">
+      <div id="listheadingBoxLeft">
+        <div class="heading">Herst.-S/N</div>
+        <div class="heading">Name</div>
+        <div class="heading">Standort</div>
+        <div class="heading">Schrank</div>
+        <div class="heading">Ausgeliehen am</div>
+        <div class="heading">Ausgeliehen von</div>
+        <div class="heading">Status</div>
+      </div>
+      <div id="listheadingBoxRight"></div>
+    </div>
+    <ng-container *ngIf="loadingList !== true">
+    <div  id="listRowBox" *ngFor="let hardware of hardwarelists" >
+      <div id="listRowBoxLeft">
+        <div class="row">{{ hardware.manufacturer_name + "-" + hardware.serial_number }}</div>
+        <div class="row">{{ hardware.hardware_name }}</div>
+  
+        <div class="row">
+          <span *ngIf="hardware.location_name">{{ hardware.location_name }}</span>
+          <span *ngIf="!hardware.location_name">offen</span>
+        </div>
+  
+        <div class="row">
+          <span *ngIf="hardware.locker_label">{{ hardware.locker_label }}</span>
+          <span *ngIf="!hardware.locker_label">offen</span>
+        </div>
+  
+        <div class="row">
+          <input 
+            *ngIf="hardware.Newstatus_id ==2 && hardware.status_id !== 2" 
+            type="date" 
+            id="datum" 
+            name="datum"
+            value="" 
+            (change)="onInputChange(hardware, 1, $event)"
+          />
+          <input 
+          *ngIf="hardware.status_id == 1 && hardware.Newstatus_id !==2" 
+          type="hidden" 
+          id="datum" 
+          name="datum"
+          value="" 
+          (change)="onInputChange(hardware, 1, $event)"
+        />
+          <span *ngIf="hardware.status_id == 2">{{ hardware.lends_out_at }}</span>
+          <span *ngIf="hardware.Newstatus_id !==2 && hardware.status_id !== 2">
+            Offen
+          </span>
+        </div>
+  
+        <div class="row">
+        <input *ngIf="hardware.Newstatus_id ==2 && hardware.status_id !==2"
+          type="text"
+          [(ngModel)]="hardware.inputName"
+          (input)="onEmployeeInputChange(hardware)"
+          (focus)="hardware.inputFocused = true"
+          (blur)="onBlur(hardware)"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Mitarbeiter Name"
+        />
+        <input *ngIf="hardware.Newstatus_id ==2 && hardware.status_id !==2"
+          type="number"
+          [(ngModel)]="hardware.selectedEmployeeId"
+          id="employee_id"
+          name="employee_id"
+          hidden
+        />
+        <ul *ngIf="hardware.vorschlaege?.length > 0 && hardware.inputFocused" class="autocomplete-list">
+          <li
+            *ngFor="let emp of hardware.vorschlaege"
+            (click)="setName(emp, hardware)"
+            class="autocomplete-item"
+          >
+            <div><strong>{{ emp.first_name }} {{ emp.last_name }}</strong></div>
+            <div class="email">{{ emp.email }}</div>
+          </li>
+        </ul>
+          <span *ngIf="hardware.status_id == 2">
+            {{ hardware.employee_first_name + ", " + hardware.employee_last_name }}
+          </span>
+          <span *ngIf="(hardware.status_id == 1 || hardware.status_id == 3) && hardware.Newstatus_id !==2">
+            Offen
+          </span>
+        </div>
+  
+        <div class="row">
+          <select 
+            id="statusSelect" 
+            (change)="onInputChange(hardware, 3, $event)">
+            <option *ngFor="let status of HardwareStatuses" [value]=status.id [selected]="hardware.status_id == status.id">{{status.status}}</option>
+          </select>
+          <img src="../../assets/Icons/arrowDown.png" class="selectImgStatus" loading="lazy" />
+        </div>
+      </div>
+  
+      <div id="listRowBoxRight">
+        <div  class="saveBtn" *ngIf="hardware.changed"
+        (click)="saveChanges(hardware)">
+          <img 
+          src="../../assets/Icons/save_White.svg" 
+          loading="lazy"
+        />
+        </div>
+        <div id="extendBtn" *ngIf="!hardware.changed" (click)="showhardwaredetails(hardware.id)">
+          <img src="../../assets/Icons/arrow_forward_right.svg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  </div>
+</div>

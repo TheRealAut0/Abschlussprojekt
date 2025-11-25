@@ -1,0 +1,40 @@
+select {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    text-align: center;
+    color: #111;
+    font-size: larger;
+   
+}
+
+#runbtn{
+    height: 50px;
+    width: 90%;
+    background-color: #7e7e7e;
+    color: #fff;
+    border-radius: 10px;
+    font-size: larger;
+    cursor: pointer;
+    transition-duration: 300ms;
+    outline: none;
+    border: none;
+
+}
+#runbtn:hover{
+    letter-spacing: 1px;
+}
+
+select {
+    appearance: none; /* Versteckt das Standard-Icon */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url(../../assets/Icons/arrowDown.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 30px;
+ /* Platz für das Icon */
+    cursor: pointer;
+}

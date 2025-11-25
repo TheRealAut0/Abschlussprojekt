@@ -1,0 +1,150 @@
+#resultBox {
+  height: 65vh;
+  width: 96%;
+  background-color: #fff;
+  margin: 20px auto;
+  border-radius: 12px;
+  color: #000;
+  overflow-x: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  position: relative;
+}
+
+/* Standard Tabellenlayout */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow-x: auto;
+}
+
+th, td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  word-break: break-word;
+}
+
+th {
+  background-color: #e60000;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+td {
+  font-size: 15px;
+  color: #000;
+}
+
+/* Hover Effekt */
+tr:hover {
+ 
+}
+#closeBtn {
+  position: sticky;
+  
+  z-index: 10;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  transition: transform 0.3s;
+  
+}
+#closeBtn:hover {
+ 
+}
+#closeBtnImg {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+/* 📱 Responsive: Tabelle wird zu Cards */
+@media screen and (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  table{
+    padding: 0 10px;
+  }
+
+  thead {
+    display: none; /* Spaltenüberschriften ausblenden */
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #e60000;
+   
+  }
+
+  td {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 50%);
+    font-weight: bold;
+    color: #fff;
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+
+  td {
+    padding-left: 120px;
+    min-height: 40px;
+    font-size: 14px;
+    color: #fff;
+    
+  }
+  #closeBtn {
+    position: relative;
+    justify-content: right;
+    transition: transform 0.3s;
+    margin: 0 auto;
+  }
+  #closeBtn:hover {
+    transform: scale(1);
+  }
+  #resultBox{
+    height: 80vh;
+  }
+}
+
+
+
+/* Scrollbar optisch */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}

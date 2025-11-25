@@ -1,0 +1,468 @@
+.hardwareCreate{
+    width: 96%;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0 auto;
+    
+    margin-bottom: 1vh;
+    color: #333;
+    display: flex;
+    flex-direction: column;    
+    justify-content: flex-start;
+    
+    position: relative;
+    transition-duration: 300ms;
+    box-shadow: 0 2px 6px 2px #11111136;
+   
+    
+ 
+    }
+    
+    .btnBox{
+      width: 100%;
+      height: 50px;
+      display: flex;    
+      justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    background-color: #7e7e7e;
+    border-radius: 4px;
+    transition-duration: 200ms;
+    color: #fff;
+   
+    
+    }
+    
+
+    .expanded{
+      height: 80%;
+    }
+    
+    .hidden{
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .hardwareCreate:hover #hardwareCreateText{
+    letter-spacing: 1px;
+    }
+    
+    /* .hardwareCreate:hover #hardwareAddImg{
+        transform: rotate(180deg);
+        }
+         */
+    
+    #hardwareCreateText{
+        font-size: larger;
+        transition-duration: 300ms;
+    }
+    
+    #hardwareAddImg{
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        right: 1%;
+        transition-duration: 400ms;
+        z-index: 100;
+    
+    }
+    #formBox{
+      height: 65vh;
+      width: 96%;
+      margin: 0 auto;
+      border-radius: 4px;
+      position: relative;
+      color: #fff;
+      overflow: hidden;
+      
+    }
+  
+    #heading{
+      height: 10%;
+      width: 100%;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size: larger;
+      border-bottom:1px solid #fff;
+  
+    }
+  
+  
+    #HardwareCreateform{
+      height: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas: 
+      "GrindBox1 GrindBox2 GrindBox3"
+      "GrindBox4 GrindBox5 GrindBox6"
+      "GrindBox7 GrindBox8 GrindBox9"
+      "GrindBox10 GrindBox11 GrindBox9"
+      "GrindBox12 GrindBox13 GrindBox9"
+      "GrindBox14 GrindBox14 GrindBox16"
+      "GrindBox17 GrindBox17 GrindBox17";
+      align-items: center;
+      
+  
+    }
+   .box{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+   }
+    #GrindBox1{grid-area: GrindBox1;}
+    #GrindBox2{grid-area: GrindBox2;}
+    #GrindBox3{grid-area: GrindBox3;}
+    #GrindBox4{grid-area: GrindBox4;}
+    #GrindBox5{grid-area: GrindBox5;}
+    #GrindBox6{grid-area: GrindBox6;}
+    #GrindBox7{grid-area: GrindBox7;}
+    #GrindBox8{grid-area: GrindBox8;}
+    #GrindBox9{grid-area: GrindBox9;}
+    #GrindBox10{grid-area: GrindBox10;}
+    #GrindBox11{grid-area: GrindBox11;}
+    #GrindBox12{grid-area: GrindBox12;}
+    #GrindBox13{grid-area: GrindBox13;}
+    #GrindBox14{grid-area: GrindBox14;
+    position: relative;}
+    #GrindBox15{grid-area: GrindBox15;}
+    #GrindBox16{grid-area: GrindBox16;
+      position: relative;}
+    #GrindBox17{grid-area: GrindBox17;}
+    #GrindBox18{grid-area: GrindBox18;}
+  
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    
+  }
+  input, select {
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      width: 90%;
+      height: 60%;
+      text-align: center;
+      background: #f5f5f5;
+      color: #333;
+      box-shadow: 0 0px 4px 1px #11111136;
+      font-size: 16px;
+      outline: none;
+      transition-duration: 200ms;
+  }
+
+  input:focus, select:focus{
+    box-shadow: 0 0px 6px 3px #11111136;
+  }
+  
+   
+  table {
+      width: 100%;
+      text-align: center;
+    }
+    
+    th, td {
+      padding: 10px;
+      color: #333;
+     
+    }
+    
+    th {
+     
+      color: #333;
+    }
+    
+    .accessoryDeleteImg{
+      height: 20px;
+      cursor: pointer;
+    }
+    .accessoryDeleteBtn{
+      height: 30px;
+      width: 30px;
+      border-radius: 4px;
+      background-color: #e60000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+  
+    .accessoriesBox{
+      height: 100%;
+      border-radius: 4px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      gap: 2px;
+  
+  
+    }
+  
+    .addAccessoryBtn{
+      background-color: #7e7e7e;
+      height: 100%;
+      width: 20%;
+      bottom: 0%;
+      right: 0%;
+      border-radius: 4px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+  
+    .addAccessoryBtn:hover{
+      opacity: 0.8;
+      transform: scaleX(1.1);
+    }
+  
+    
+    .addAccessoryBtnImg{
+      height: 45px;
+      transition: all 0.3s ease-in-out;
+    }
+  
+  
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        background-color: transparent;
+          width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+          background: #f5f5f5;
+          border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+          background: #888;
+      }
+  
+      #GerätCreatebtn{
+          width: 80%;
+          height: 60%;
+          border-radius: 4px;
+          border: none;
+          outline: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          color: #fff;
+          background-color: #7e7e7e;
+          font-size: larger;
+          transition: all 0.3s ease-in-out;
+          
+      }
+      #GerätCreatebtn:hover{
+          opacity: 0.8;
+          letter-spacing: 1px;
+        }
+      
+   
+      input[type="date"]::-webkit-calendar-picker-indicator {
+          width: 30px;
+          height: 30px;
+          background-image: url(../../assets/Icons/date_black.svg);
+          z-index: 100;
+          
+         
+          
+      }
+  
+      select {
+          appearance: none; /* Versteckt das Standard-Icon */
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background-image: url(../../assets/Icons/arrowDown.png);
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 30px;
+       /* Platz für das Icon */
+          cursor: pointer;
+      }
+  
+  
+ #employee_id{
+  width: 95%;
+ }
+
+ #GrindBox14 input{
+  width: 95%;
+ }
+
+ .autocomplete-list {
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  background-color: #f9f9f9; /* helles, neutrales Grau */
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: transparent;
+}
+
+.autocomplete-item:hover {
+  background-color: #e6f0ff; /* sanftes hellblau für Hover */
+}
+
+.autocomplete-item .email {
+  font-size: 12px;
+  color: #666;
+}
+
+.autocomplete-list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+}
+
+.autocomplete-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+
+
+@media (max-width: 900px) { 
+  #formBox{
+    height: 80vh;
+  }
+  #HardwareCreateform {
+    
+    display: grid;
+    grid-template-columns: 1fr; /* Nur eine Spalte */
+    grid-template-rows: repeat(19, auto); /* 17 Zeilen, automatische Höhe */
+    grid-template-areas: 
+      "GrindBox1"
+      "GrindBox2"
+      "GrindBox3"
+      "GrindBox4"
+      "GrindBox5"
+      "GrindBox6"
+      "GrindBox7"
+      "GrindBox8"
+      "GrindBox10"
+      "GrindBox11"
+      "GrindBox12"
+      "GrindBox13"
+      "GrindBox14"
+      "GrindBox15"
+      "GrindBox9"
+      "GrindBox9"
+      "GrindBox9"
+      "GrindBox16"
+      "GrindBox17";
+    align-items: center;
+    overflow: auto;
+  }
+ .box{
+  height: 100px;
+ }
+ .accessoriesBox{
+  height: 300px;
+  width: 100%;
+ align-items: center;
+ }
+ 
+
+ #GrindBox14 input{
+  width: 90%;
+ }
+
+
+}
+
+#accessoryInputUndBtnBox{
+  position: relative;
+  width: 90%;
+  height: 60%;
+}
+
+#accessoryInputUndBtnBox input{
+  height: 100%;
+  width: 100%;
+}
+
+
+@media (min-height: 900px){
+  input, select{
+    height: 50%;
+  }
+  #GerätCreatebtn{
+    height: 50%;
+  }
+  #accessoryInputUndBtnBox{
+    height: 50%;
+  }
+
+}
+
+
+@supports (-webkit-touch-callout: none) {
+  input[type="date"] {
+    min-width: 90%;
+    font-size: 16px;
+  
+  }
+  input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url(../../assets/Icons/date_black.svg);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 30px;
+    padding-right: 40px;
+  }
+  select{
+    text-align: center;        /* fallback */
+    text-align-last: center;   /* zentriert die ausgewählte Option */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url(../../assets/Icons/arrowDown.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 30px;
+    padding-right: 40px;
+    font-size: 16px;
+    
+  }
+  input{
+    text-align: center;
+    font-size: 16px;
+  }
+
+
+}
+
+
+

@@ -1,0 +1,10 @@
+<div *ngIf="alert$ | async as alert" class="alert-container">
+  <div class="alert" [ngClass]="'alert-' + alert.type">
+    <span>{{ alert.message }}</span>
+    <button (click)="closeAlert()">×</button>
+    <div 
+      class="alert-progress" 
+      [style.width.%]="progress$ | async"
+    ></div>
+  </div>
+</div>

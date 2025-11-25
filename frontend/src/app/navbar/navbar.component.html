@@ -1,0 +1,53 @@
+<nav id="navbar">
+    <div class="navBox" id="leftBox">
+      <h1 id="logo">HardwareHub</h1>
+    </div>
+    <div class="navBox" id="rightBox">
+      <ul id="itemsBox">
+        <li class="link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/">Liste</a>
+        </li>
+        <li class="link" routerLinkActive="active">
+          <a routerLink="/history">Verlauf</a>
+        </li>
+        <li class="link" routerLinkActive="active">
+          <a routerLink="/analyze">Analyse</a>
+        </li>
+        <li class="link" id="logout">
+          <img routerLink="/" src="../../assets/Icons/logout.png"
+            onmouseover="this.src='../../assets/Icons/logoutLightRed.png'"
+            onmouseout="this.src='../../assets/Icons/logout.png'" loading="lazy">
+        </li>
+        <li id="pointer"></li>
+      </ul>
+
+      <ul id="itemsBoxMenu">
+        <li class="link" id="menu" (click)="menuOpen()">
+          <img *ngIf="isOpen === false"  src="../../assets/Icons/menuWhite.svg"
+         loading="lazy">
+         <img *ngIf="isOpen === true" src="../../assets/Icons/closeWhite.svg"
+         loading="lazy">
+        </li>
+      </ul>
+    </div>
+
+    <ul id="DropdownItems" *ngIf="isOpen === true">
+      <li class="link" routerLink="/"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="menuOpen()">
+        <a  routerLink="/" (click)="menuOpen()">Liste</a>
+      </li>
+      <li class="link" routerLinkActive="active" routerLink="/history" (click)="menuOpen()">
+        <a routerLink="/history" (click)="menuOpen()">Verlauf</a>
+      </li>
+      <li class="link" routerLink="/analyze" routerLinkActive="active" (click)="menuOpen()">
+        <a routerLink="/analyze" (click)="menuOpen()">Analyse</a>
+      </li>
+      <li class="link" routerLink=""   id="logout" (click)="menuOpen()">
+        <a routerLink="" (click)="menuOpen()">Logout</a>
+      </li>
+      <li class="link" routerLink="/admin" routerLinkActive="active" (click)="menuOpen()">
+        <a routerLink="/Admin" (click)="menuOpen()">Admin</a>
+      </li>
+    </ul>
+
+  </nav>
+  

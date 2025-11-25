@@ -1,0 +1,149 @@
+#DetailsBox{
+    height: 65vh;
+    width: 96%;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 4px;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+    box-shadow: 0 2px 6px 2px #11111136;
+    
+  }
+
+  #heading{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    border-bottom:1px solid #fff;
+    color: #fff;
+    background-color: #e60000;
+    font-size: 20px;
+
+  }
+
+
+
+  #gridsBox{
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "GrindBox1 GrindBox2 GrindBox3 GrindBox4 GrindBox5 GrindBox6"
+    "GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7"
+    "GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7"
+    "GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7 GrindBox7";
+    align-items: center;
+    padding: 0 5%;
+    font-size: 16px
+
+  }
+ .box{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+   
+    
+ }
+  #GrindBox1{grid-area: GrindBox1;}
+  #GrindBox2{grid-area: GrindBox2;}
+  #GrindBox3{grid-area: GrindBox3;}
+  #GrindBox4{grid-area: GrindBox4;}
+  #GrindBox5{grid-area: GrindBox5;}
+  #GrindBox6{grid-area: GrindBox6;}
+  #GrindBox7{grid-area: GrindBox7;
+    align-items: start;
+flex-direction: column; gap: 8px;
+}
+
+
+
+  #description{
+    height: 80%;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0px 0px 3px 1px #11111136;
+
+  }
+
+
+
+  #closeBtn{
+    position: absolute;
+    cursor: pointer;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+  }
+
+  #closeBtn:hover{
+   transform: scale(1.1);
+  }
+
+  #closeBtnImg{
+    height: 50px;
+    width: 50px;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 20px;
+    
+}
+::-webkit-scrollbar-track {
+    background: #111;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+
+@media (max-width: 900px){
+ 
+  #gridsBox{
+    height: 90%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "GrindBox1" 
+    "GrindBox2" 
+    "GrindBox3" 
+    "GrindBox4" 
+    "GrindBox5" 
+    "GrindBox6"
+    "GrindBox7"
+    "GrindBox7"
+    "GrindBox7"
+    "GrindBox8";
+    align-items: center;
+    padding: 0 5%;
+    
+
+  }
+  #DetailsBox{
+    height: 75vh;
+  }
+}

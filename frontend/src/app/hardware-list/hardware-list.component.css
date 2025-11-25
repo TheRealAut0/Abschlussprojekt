@@ -1,0 +1,357 @@
+
+/* Liste */
+#listbox{
+    height: 74%;
+    width: 96%;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow-y: scroll;
+    position: relative;
+    box-shadow: 0 2px 6px 2px #11111136;
+    
+ 
+  }
+
+  #listheadingBox{
+  height: 60px;
+  border-bottom: 1px solid #fff;
+  position: sticky;
+  z-index: 3;
+  width: 100%;
+  top: 0;
+  background-color: #e60000;
+  }
+
+
+  #listheadingBoxLeft{
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+   
+  }
+
+  .heading{
+    height: 100%;
+    width: calc(100% / 7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 18px;
+  }
+
+
+  #listRowBox{
+    height: 60px;
+  
+    display: flex;
+    }
+  
+  
+    #listRowBoxLeft{
+      height: 100%;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     
+    }
+
+    .row{
+        height: 100%;
+        width: calc(100% / 7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight:lighter;
+        color: #000;
+        position: relative;
+      }
+  
+
+
+
+
+
+
+
+      /*Select*/
+
+      #listbox select {
+        appearance: none; /* Entfernt das Standard-Design */
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+    
+        cursor: pointer;
+        width: 85%;
+        height: 75%;
+        outline: none;
+        text-align: center;
+        border: none;
+        box-shadow: 0 0px 4px 1px #11111136;
+        color: #333;         
+        transition-duration: 200ms;
+        font-size: 16px;      
+     
+    }
+    input{
+        appearance: none; /* Entfernt das Standard-Design */
+        background: #333;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        width: 85%;
+        height: 75%;
+        outline: none;
+        text-align: center;
+        border: none;
+        background: #f5f5f5;
+        color: #333;
+        box-shadow: 0 0px 4px 1px #11111136;
+        transition-duration: 200ms;
+        font-size: 16px;
+      
+    }
+
+    input:focus{
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+    input:hover{
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+
+   
+
+    #listbox select:focus {
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+    #listbox select:hover {
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+
+
+
+    #datum{
+        appearance: none; /* Entfernt das Standard-Design */
+        background: #333;
+        color: white;
+        border: 2px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        width: 85%;
+        height: 75%;
+        outline: none;
+        text-align: center;
+        border: none;
+        background: #f5f5f5;
+        color: #000;
+        box-shadow: 0 0px 4px 1px #11111136;
+        transition-duration: 200ms;
+        font-size: 16px;
+    }
+
+    #datum:focus {
+    
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+
+    #datum:hover {
+    
+        box-shadow: 0 0px 6px 3px #11111136;
+    }
+
+    .selectImgEmployee{
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        right: 10%;
+        z-index: 2;
+        pointer-events: none;
+        transition-duration: 300ms;
+    }
+
+    .selectImgStatus{
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        right: 10%;
+        z-index: 2;
+        pointer-events: none;
+        transition-duration: 300ms;
+    }
+
+    #listRowBoxRight{
+     width: 10%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    }
+
+    #extendBtn{
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        background-color: #7e7e7e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition-duration: 300ms;
+        box-shadow: 0px 0px 6px 2px #11111136;
+    }
+
+    #extendBtn:hover{
+       transform: scale(1.1);
+       box-shadow: 0px 0px 8px 3px #11111136;
+    }
+
+
+    #extendBtn img{
+        height: 30px;
+    }
+  
+.saveBtn{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: #7e7e7e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 300ms;
+    box-shadow: 0px 0px 6px 2px #11111136;
+}
+
+.saveBtn img {
+    height: 30px;
+}
+  
+  
+ul::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+    
+}
+
+
+::-webkit-scrollbar {
+    background-color: #e60000;
+    width: 20px;
+    border-radius: 0 4px 4px 0;
+   
+  }
+  ::-webkit-scrollbar-track {
+   
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 30px;
+    height: 30px;
+    background-image: url(../../assets/Icons/date_black.svg);
+    z-index: 2;
+    
+   
+    
+}
+
+@media (max-width: 1460px){
+ 
+    #flexibleBox{
+        width: 1400px;
+    }
+  
+}
+
+
+.autocomplete-list {
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    background-color: #f9f9f9; 
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+  
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    width: 90%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    transition: background 0.2s;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: transparent;
+  }
+  
+  .autocomplete-item:hover {
+    background-color: #e6f0ff; /* sanftes hellblau für Hover */
+  }
+  
+  .autocomplete-item .email {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .autocomplete-list::-webkit-scrollbar {
+    background-color: transparent;
+    width: 6px;
+  }
+  
+  .autocomplete-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    input[type="date"] {
+      min-width: 90%;
+      font-size: 16px;
+    
+    }
+    #datum {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url(../../assets/Icons/date_black.svg);
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 30px;
+      padding-right: 40px;
+    }
+    select{
+   
+    
+    }
+    input{
+      text-align: center;
+      font-size: 16px;
+    }
+  
+  
+  }

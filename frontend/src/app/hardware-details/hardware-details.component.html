@@ -1,0 +1,106 @@
+<app-loading-screen *ngIf="loading === true"></app-loading-screen>
+<div id="formBox">
+  <div id="heading">Details Ansicht<div id="closeBtn" routerLink="/"><img src="../../assets/Icons/close.png" id="closeBtnImg" alt="" loading="lazy"></div></div>
+  
+  <form id="HardwareEditform">
+   <div class="box" id="GrindBox1"><label>Hersteller:</label>
+    <select (change)="onManufacturerChange($event)"><option *ngFor="let manufacturer of manufacturers;" value="{{manufacturer.id}}" [selected]="manufacturer.id == hardware.manufacturer_id">{{manufacturer.name}}</option></select>
+  </div>
+   <div class="box" id="GrindBox2"><label>Name:</label>
+    <select name="hardware_data_id" id="hardware_data_id" (change)="onHardwareDataChange($event)"><option *ngFor="let filteredHardware of filteredHardwarelist;" value={{filteredHardware.id}} [selected]="filteredHardware.id === hardware.hardware_data_id">{{filteredHardware.hardware_name}}</option></select>
+  </div>
+   <div class="box" id="GrindBox3"><label>Betriebsystem:</label>
+    
+    <input  value={{selected_hardware.operating_system_name}} disabled>
+  </div>
+   <div class="box" id="GrindBox4"><label>Seriennummer:</label><input name="serial_number" id="serial_number" value="{{hardware.serial_number}}" type="text" placeholder="Seriennummer"></div>
+   <div class="box" id="GrindBox5"><label>IMEI:</label><input name="imei" id="imei" value="{{hardware.imei}}" type="text" placeholder="IMEI"></div>
+   <div class="box" id="GrindBox6"><label>Budget aligned:</label><input name="budget_aligned" id="budget_aligned" value={{hardware.budget_aligned}} type="number" placeholder="budget_aligned"></div>
+   <div class="box" id="GrindBox7"><label>Standort:</label>
+    <select *ngIf="hardware.location_name !== null" (change)="onLocationChange($event)"><option *ngFor="let location of locations;" value={{location.id}}>{{location.name}}</option></select>
+    <select *ngIf="hardware.location_name === null"><option>Offen</option></select>
+  </div>
+   <div class="box" id="GrindBox8"><label>Schrank:</label>
+    <select *ngIf="hardware.locker_label !== null" id="locker_id" name="locker_id"><option *ngFor="let locker of filteredLockerslist;" value={{locker.id}} [selected]="hardware.locker_id === locker.id">{{locker.label}}</option></select>
+    <select *ngIf="hardware.locker_label === null"><option>Offen</option></select>
+  </div>
+   <div class="accessoriesBox" id="GrindBox9">
+    <table>
+      <thead>
+          <tr>
+              <th>Index</th>
+              <th>Zubehör Name</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let accessory of hardwareAccessories; let i = index" >
+              <td>{{i + 1}}</td>
+              <td>{{accessory.name}}</td>
+              <td><div (click)="removeAccessory(accessory.id)" class="accessoryDeleteBtn"><img class="accessoryDeleteImg" src="../../assets/Icons/delete.png" loading="lazy"></div></td>
+          </tr>
+          
+      </tbody>
+  </table>
+   </div>
+   <div class="box" id="GrindBox10"><label>Lieferungsdatum:</label><input name="delivery_date" id="delivery_date" [value]="convertToDateInputFormat(hardware.delivery_date)" type="date"></div>
+   <div class="box" id="GrindBox11"><label>Lieferdatum:</label><input name="delivery_note_date" id="delivery_note_date" [value]="convertToDateInputFormat(hardware.delivery_note_date)" type="date"></div>
+   <div class="box" id="GrindBox12"><label>Status:</label>
+    <select name="status_id" id="status_id"  (change)="onStatusChange($event)">
+    <option *ngFor="let status of HardwareStatuses" [selected]="hardware.status_id == status.id"  value={{status.id}}>{{status.status}}</option>
+</select></div>
+   <div class="box" id="GrindBox13"><label>Ausgeliehen Von:</label>
+    <input *ngIf="!isonloan && hardware.status_id !==2 || (hardware.status_id === 2 && !isonloan)"
+    type="text"
+    placeholder="Mitarbeiter Name"
+    disabled
+  />
+    <input *ngIf="isonloan  || (hardware.status_id ===2 && isonloan )"
+    type="text"
+    [(ngModel)]="inputName"
+    (input)="onEmployeeInputChange()"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    [ngModelOptions]="{ standalone: true }"
+    placeholder="Mitarbeiter Name"
+  />
+  <input *ngIf="isonloan === true"
+    type="number"
+    [(ngModel)]="selectedEmployeeId"
+    id="employee_id"
+    name="employee_id"
+    value={{hardware.employee_id}}
+    hidden
+  />
+  <ul *ngIf="vorschlaege.length > 0 && inputFocused" class="autocomplete-list">
+    <li
+      *ngFor="let emp of vorschlaege"
+      (click)="setName(emp)"
+      class="autocomplete-item"
+    >
+      <div><strong>{{ emp.first_name }} {{ emp.last_name }}</strong></div>
+      <div class="email">{{ emp.email }}</div>
+    </li>
+  </ul>
+  </div>
+   <div class="box" id="GrindBox14"><label>Ausgeliehen Am:</label>
+    <input *ngIf="isonloan  || (hardware.status_id ===2 && isonloan)" name="lends_out_at" id="lends_out_at" [value]="convertToDateInputFormat(hardware.lends_out_at)"  type="date">
+    <input *ngIf="!isonloan && hardware.status_id !==2" name="lends_out_at" id="lends_out_at" [value]="convertToDateInputFormat(hardware.lends_out_at)"  type="date" disabled>
+    <input *ngIf="!isonloan && hardware.status_id ===2" name="lends_out_at" id="lends_out_at" [value]=""  type="date" disabled>
+  </div>
+   <div class="box" id="GrindBox15"><label>Zurückgeben Am:</label>
+    <input *ngIf="selectedStatus === 1 && hardware.status_id === 2 " name="returned_at" id="returned_at" type="date">
+    <input *ngIf="!(selectedStatus === 1 && hardware.status_id === 2)" name="returned_at" id="returned_at" type="date" disabled>
+  </div>
+   <div class="box" id="GrindBox16"><label>Zubehör Name:</label>
+    <div id="accessoryInputUndBtnBox"><input id="accessory" type="text" placeholder="Zubehör Name"> <div (click)="addAccessoryInput()" class="addAccessoryBtn"><img class="addAccessoryBtnImg" src="../../assets/Icons/add.png" alt="" loading="lazy"></div>
+  </div>
+</div>
+   <div class="box" id="GrindBox17">
+    <!-- <button type="button" (click)="deleteHardware()" id="löschenBtn">Hardware Löschen</button> -->
+    <button type="button" (click)="submitForm()" id="speichernBtn">Speichern</button>
+  </div>
+  </form>
+</div>
+
+  
