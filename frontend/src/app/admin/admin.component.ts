@@ -6,7 +6,9 @@ import { forkJoin, Observable } from 'rxjs';
 interface User {
   _id?: string;
   id?: string;
-  name: string;
+  name?: string;         
+  first_name?: string;   
+  last_name?: string;    
   email: string;
   role?: string;
   isAdmin?: boolean;
@@ -33,13 +35,13 @@ export class AdminComponent implements OnInit {
     this.api.getUsers().subscribe({
       next: (res: any[]) => {
         this.users = res.map((u: any) => {
-          const role = (u.role ?? (u.isAdmin ? 'admin' : u.isEditor ? 'editor' : u.isViewer ? 'viewer' : undefined)) as string | undefined;
+          const role = (u.role ?? (u.isAdmin ? 'Admin' : u.isEditor ? 'Editor' : u.isViewer ? 'Viewer' : undefined)) as string | undefined;
           return {
             ...u,
             role,
-            isAdmin: role === 'admin',
-            isEditor: role === 'editor',
-            isViewer: role === 'viewer'
+            isAdmin: role === 'Admin',
+            isEditor: role === 'Editor',
+            isViewer: role === 'Viewer'
           };
         });
       },
@@ -50,15 +52,15 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  changeRole(user: User, role: 'admin' | 'editor' | 'viewer' | undefined): void {
+  changeRole(user: User, role: 'Admin' | 'Editor' | 'Viewer' | undefined): void {
     user.role = role;
-    user.isAdmin = role === 'admin';
-    user.isEditor = role === 'editor';
-    user.isViewer = role === 'viewer';
+    user.isAdmin = role === 'Admin';
+    user.isEditor = role === 'Editor';
+    user.isViewer = role === 'Viewer';
     this.markModified(user);
   }
 
-  toggleRight(user: User, role: 'admin' | 'editor' | 'viewer', event: Event): void {
+  toggleRight(user: User, role: 'Admin' | 'Editor' | 'Viewer', event: Event): void {
     const checked = (event.target as HTMLInputElement).checked;
     this.changeRole(user, checked ? role : undefined);
   }
