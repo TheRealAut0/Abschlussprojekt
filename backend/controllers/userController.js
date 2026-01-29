@@ -31,13 +31,32 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+
+  // Nur diese Felder aus dem Body in die DB übernehmen (Whitelist)
+  const allowed = ['first_name', 'last_name', 'email', 'role', 'isAdmin', 'isEditor', 'isViewer', 'name'];
+  const updates = {};
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(req.body, key)) {
+      updates[key] = req.body[key];
+    }
+  }
+
+  // Falls Passwort explizit geändert werden soll, handle das getrennt (hashen!)
+  if (req.body.password) {
+    // Beispiel: falls du bcrypt benutzt, hier hashen und in updates.password setzen
+    // const hashed = await bcrypt.hash(req.body.password, 10);
+    // updates.password = hashed;
+    // Wenn du Passwort-Update nicht erlauben willst, lasse es weg.
+  }
+
   try {
-      const { name, email, password, first_name, last_name} = req.body;
-      const updatedUser = await User.updateUser(req.params.id, { name, email, password, first_name, last_name });
-      if (!updatedUser) return res.status(404).json({ message: "User not found" });
-      res.json({ message: "User updated", user: updatedUser });
+    // Verwende $set, damit nur die angegebenen Felder überschrieben werden
+    const updatedUser = await User.findByIdAndUpdate(id, { $set: updates }, { new: true });
+    if (!updatedUser) return res.status(404).json({ message: 'User not found' });
+    res.json(updatedUser);
   } catch (err) {
-      res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
