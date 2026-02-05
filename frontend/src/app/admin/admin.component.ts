@@ -27,6 +27,8 @@ export class AdminComponent implements OnInit {
 
   constructor(private api: ApiService, private router: Router) {}
 
+  loading: boolean = true;
+
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -43,7 +45,9 @@ export class AdminComponent implements OnInit {
             isEditor: role === 'Editor',
             isViewer: role === 'Viewer'
           };
+          
         });
+        this.loading = false;
       },
       error: (err: any) => {
         console.error('Load users error', err);
