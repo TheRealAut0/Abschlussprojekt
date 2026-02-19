@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="login-wrap">
+  <section class="card login-card" [class.loading]="loading">
+    <div class="brand">
+      <h2>Willkommen zurück</h2>
+      <p class="subtitle">Melde dich mit E‑Mail und Passwort an</p>
+    </div>
+
+    <form (ngSubmit)="login()" class="login-form" novalidate>
+      <div class="field">
+        <label for="email">E‑Mail</label>
+        <div class="input">
+          <input id="email" name="email" type="email" [(ngModel)]="email" required autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Passwort</label>
+        <div class="input password-input">
+          <input id="password" name="password"
+                 [type]="showPassword ? 'text' : 'password'"
+                 [(ngModel)]="password" required autocomplete="current-password" />
+          <button type="button" class="show-btn" (click)="showPassword = !showPassword" aria-label="Passwort anzeigen">
+            {{ showPassword ? '●●' : '👁' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="extras">
+        <label class="remember">
+          <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" /> Angemeldet bleiben
+        </label>
+        <a class="forgot" routerLink="/forgot-password">Passwort vergessen?</a>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit" [disabled]="loading">Anmelden</button>
+        <button class="btn ghost" type="button" (click)="goRegister()" [disabled]="loading">Registrieren</button>
+      </div>
+
+      <div *ngIf="error" class="alert">{{ error }}</div>
+
+      <div class="spinner" *ngIf="loading" aria-hidden="true">
+        <div class="dot"></div>
+      </div>
+    </form>
+  </section>
+</div>
