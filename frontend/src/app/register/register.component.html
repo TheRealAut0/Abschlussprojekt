@@ -1,1 +1,70 @@
-<p>register works!</p>
+<div class="login-wrap register-wrap">
+    <section class="card login-card" [class.loading]="loading">
+        <div class="brand">
+            <h2>Neues Konto erstellen</h2>
+            <p class="subtitle">Erstelle einen Account, um auf das Hardware‑Portal zuzugreifen</p>
+        </div>
+
+        <form #f="ngForm" (ngSubmit)="register(f)" class="login-form" novalidate>
+            <div class="form-row">
+                <div class="field half">
+                    <label for="firstName">Vorname</label>
+                    <div class="input">
+                        <input id="firstName" name="firstName" type="text" [(ngModel)]="firstName" required minlength="2" />
+                    </div>
+                </div>
+
+                <div class="field half">
+                    <label for="lastName">Nachname</label>
+                    <div class="input">
+                        <input id="lastName" name="lastName" type="text" [(ngModel)]="lastName" required minlength="2" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">E‑Mail</label>
+                <div class="input">
+                    <input id="email" name="email" type="email" [(ngModel)]="email" required autocomplete="email" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Passwort</label>
+                <div class="input password-input">
+                    <input id="password" name="password"
+                                 [type]="showPassword ? 'text' : 'password'"
+                                 [(ngModel)]="password" required minlength="6" autocomplete="new-password" />
+                    <button type="button" class="show-btn" (click)="showPassword = !showPassword" aria-label="Passwort anzeigen">
+                        {{ showPassword ? '●●' : '👁' }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="confirmPassword">Passwort bestätigen</label>
+                <div class="input">
+                    <input id="confirmPassword" name="confirmPassword" [type]="showPassword ? 'text' : 'password'"
+                                 [(ngModel)]="confirmPassword" required minlength="6" autocomplete="new-password" />
+                </div>
+            </div>
+
+            <div class="field extras">
+                <label class="remember">
+                    <input type="checkbox" name="acceptTerms" [(ngModel)]="acceptTerms" /> Nutzungsbedingungen akzeptieren
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn primary" type="submit" [disabled]="loading">Registrieren</button>
+                <button class="btn ghost" type="button" routerLink="/login" [disabled]="loading">Zur Anmeldung</button>
+            </div>
+
+            <div *ngIf="!acceptTerms && f.submitted" class="alert">Bitte akzeptiere die Nutzungsbedingungen.</div>
+
+            <div class="spinner" *ngIf="loading" aria-hidden="true">
+                <div class="dot"></div>
+            </div>
+        </form>
+    </section>
+</div>

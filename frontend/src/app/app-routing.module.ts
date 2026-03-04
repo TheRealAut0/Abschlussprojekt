@@ -8,6 +8,7 @@ import { HistoryDetailsComponent } from './history-details/history-details.compo
 import { ResultComponent } from './result/result.component';
 import { AdminComponent } from './admin/admin.component'; 
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'history/details', component: HistoryDetailsComponent},
   { path: 'analyze/result', component: ResultComponent},
   { path: 'admin', component: AdminComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: '**', redirectTo: 'login' }
 ];
