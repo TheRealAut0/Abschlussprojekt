@@ -11,7 +11,7 @@ import { TokenService } from '../token.service';
 export class NavbarComponent implements AfterViewChecked, OnInit {
   showNavbar = true;
   isOpen: boolean = false;
-  isAdmin = true; // default to true for testing, will be updated in ngOnInit
+  isAdmin = false;
   constructor(
     private readonly router: Router,
     private readonly renderer: Renderer2,
