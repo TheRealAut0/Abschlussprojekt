@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -10,11 +11,17 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  const { email, password, first_name, last_name} = req.body;
+  const { email, password, first_name, last_name } = req.body;
   try {
-    const newUser = await User.createUser(email, password, first_name, last_name,);
+    console.log('🔐 Creating user:', { email, first_name, last_name, password });
+    // Hash the password with bcrypt (salt rounds = 10)
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('✅ Password hashed:', hashedPassword);
+    const newUser = await User.createUser(email, hashedPassword, first_name, last_name);
+    console.log('✅ User created:', newUser);
     res.status(201).json(newUser);
   } catch (error) {
+    console.error('❌ Error creating user:', error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -34,7 +41,8 @@ exports.updateUser = async (req, res) => {
   const { id } = req.params;
 
   // Nur diese Felder aus dem Body in die DB übernehmen (Whitelist)
-  const allowed = ['first_name', 'last_name', 'email', 'role', 'isAdmin', 'isEditor', 'isViewer', 'name'];
+  // only allow certain fields to be updated
+  const allowed = ['first_name', 'last_name', 'email', 'role_id'];
   const updates = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(req.body, key)) {

@@ -1,16 +1,43 @@
-import { Component, AfterViewChecked, Renderer2 } from '@angular/core';
+import { Component, AfterViewChecked, OnInit, Renderer2 } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements AfterViewChecked {
-  constructor(private router: Router, private renderer: Renderer2) {}
-   isOpen: boolean = false;
+export class NavbarComponent implements AfterViewChecked, OnInit {
+  showNavbar = true;
+  isOpen: boolean = false;
+  isAdmin = true; // default to true for testing, will be updated in ngOnInit
+  constructor(
+    private readonly router: Router,
+    private readonly renderer: Renderer2,
+    private readonly tokenService: TokenService
+  ) {
+    // hide navbar on login/register
+    this.router.events.pipe(
+      filter(evt => evt instanceof NavigationEnd)
+    ).subscribe((evt: any) => {
+      const url = evt.urlAfterRedirects || evt.url;
+      this.showNavbar = !(url === '/login' || url === '/register');
+    });
+  }
+  ngOnInit(): void {
+    this.updateAdminFlag();
+    // update admin flag on navigation (in case user changed)
+    this.router.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(() => this.updateAdminFlag());
+  }
   ngAfterViewChecked() {
     this.movePointer(); // Überprüft das DOM nach jeder Änderung
+  }
+
+  logout(){
+    // clear token when logging out
+    this.tokenService.clear();
+    this.router.navigateByUrl('/login');
   }
 
   movePointer() {
@@ -37,4 +64,12 @@ export class NavbarComponent implements AfterViewChecked {
   menuOpen(){
    this.isOpen = !this.isOpen;
   }
+
+  private updateAdminFlag() {
+    const role = this.tokenService.getRole();
+    if (role === 3) {
+      this.isAdmin = true;
+    }
+  }
+
 }

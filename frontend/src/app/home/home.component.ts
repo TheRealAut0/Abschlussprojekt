@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { AlertService } from '../alert.service';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // 🔹 Benutzer-Daten abrufen
     this.getHardwarelist();
-
   }
   
   getHardwarelist(){
@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error('Fehler beim Laden der Liste:', err)
     });
   }
-
 
   getHardwareListWithNotification(type: 'success' | 'error', message: string) {
     this.loading = true;
@@ -93,4 +92,6 @@ export class HomeComponent implements OnInit {
   filterArrayBy<T>(array: T[], key: keyof T, value: any): T[] {
     return array.filter(item => String(item[key]).toLowerCase().includes(String(value).toLowerCase()));
   }
+
+  
 }

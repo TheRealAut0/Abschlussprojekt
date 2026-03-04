@@ -33,8 +33,8 @@
                 <label for="password">Passwort</label>
                 <div class="input password-input">
                     <input id="password" name="password"
-                                 [type]="showPassword ? 'text' : 'password'"
-                                 [(ngModel)]="password" required minlength="6" autocomplete="new-password" />
+                           [type]="showPassword ? 'text' : 'password'"
+                           [(ngModel)]="password" required minlength="6" autocomplete="new-password" />
                     <button type="button" class="show-btn" (click)="showPassword = !showPassword" aria-label="Passwort anzeigen">
                         {{ showPassword ? '●●' : '👁' }}
                     </button>

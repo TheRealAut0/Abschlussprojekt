@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { AlertService } from '../alert.service';
 import { Router } from '@angular/router';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,12 @@ export class LoginComponent {
   showPassword = false;
   rememberMe = false;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private readonly api: ApiService,
+    private readonly alert: AlertService,
+    private readonly router: Router,
+    private readonly tokenService: TokenService
+  ) {}
 
   login(): void {
     this.error = '';
@@ -29,14 +36,15 @@ export class LoginComponent {
       next: (res) => {
         this.loading = false;
         if (res?.token) {
-          if (this.rememberMe) localStorage.setItem('token', res.token);
-          else sessionStorage.setItem('token', res.token);
+          this.tokenService.setToken(res.token, this.rememberMe);
         }
-        this.router.navigate(['/']);
+        this.alert.showAlert('success', 'Anmeldung erfolgreich. Du wirst weitergeleitet...');
+        setTimeout(() => this.router.navigate(['/home']), 900);
       },
       error: (err) => {
         this.loading = false;
-        this.error = err?.message || 'Login fehlgeschlagen.';
+        // show server-provided message if present, otherwise generic
+        this.error = err?.error?.error || err?.error?.message || 'E-Mail oder Passwort falsch.';
         console.error('Login error', err);
       }
     });

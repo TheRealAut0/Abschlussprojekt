@@ -1,4 +1,4 @@
-<nav id="navbar">
+<nav *ngIf="showNavbar" id="navbar">
     <div class="navBox" id="leftBox">
       <h1 id="logo">HardwareHub</h1>
     </div>
@@ -13,11 +13,12 @@
         <li class="link" routerLinkActive="active">
           <a routerLink="/analyze">Analyse</a>
         </li>
-        <li class="link" routerLinkActive="active">
+        <li *ngIf="isAdmin" class="link" routerLinkActive="active">
           <a routerLink="/admin">Admin</a>
         </li>
-        <li class="link" id="logout">
-          <img routerLink="/" src="../../assets/Icons/logout.png"
+        <li class="link" id="logout" (click)="logout()">
+          <!-- trigger logout handler; routerLink skipped because navigation happens programmatically -->
+          <img src="../../assets/Icons/logout.png"
             onmouseover="this.src='../../assets/Icons/logoutLightRed.png'"
             onmouseout="this.src='../../assets/Icons/logout.png'" loading="lazy">
         </li>
@@ -44,10 +45,10 @@
       <li class="link" routerLink="/analyze" routerLinkActive="active" (click)="menuOpen()">
         <a routerLink="/analyze" (click)="menuOpen()">Analyse</a>
       </li>
-      <li class="link" routerLink=""   id="logout" (click)="menuOpen()">
-        <a routerLink="" (click)="menuOpen()">Logout</a>
+      <li class="link" (click)="logout(); menuOpen()">
+        <a>Logout</a>
       </li>
-      <li class="link" routerLink="/admin" routerLinkActive="active" (click)="menuOpen()">
+      <li *ngIf="isAdmin" class="link" routerLink="/admin" routerLinkActive="active" (click)="menuOpen()">
         <a routerLink="/admin" (click)="menuOpen()">Admin</a>
       </li>
     </ul>

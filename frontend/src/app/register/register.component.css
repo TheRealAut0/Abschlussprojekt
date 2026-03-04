@@ -31,7 +31,7 @@
 .input {
 	display:flex; align-items:center; background: #fafafa; border:1px solid #eceef1; border-radius:8px; padding:0.45rem 0.5rem;
 }
-.input input { border:none; outline:none; background:transparent; width:100%; font-size:0.98rem; color:#222 }
+.input input, .input select { border:none; outline:none; background:transparent; width:100%; font-size:0.98rem; color:#222 }
 
 .password-input { position: relative; }
 .show-btn { border:none; background:transparent; cursor:pointer; font-size:0.95rem; padding:0 0.4rem; color:#666 }

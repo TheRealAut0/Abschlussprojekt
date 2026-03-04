@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+const authRoutes = require("./routes/authRoutes");
+const authMiddleware = require("./middleware/authMiddleware");
 const userRoutes = require("./routes/userRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
 const lockerRoutes = require("./routes/lockerRoutes");
@@ -13,10 +15,16 @@ const analyzeQueryRoutes = require('./routes/analyzeQueryRoutes');
 const manufacturerRoutes = require('./routes/manufacturerRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const hardwareStatusRoutes = require('./routes/hardwareStatusRoutes');
+const roleRoutes = require('./routes/roleRoutes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use("/auth", authRoutes);
+
+// alles andere muss ein valides JWT im Authorization-Header enthalten
+app.use(authMiddleware);
 
 app.use("/users", userRoutes); 
 app.use("/employees", employeeRoutes);
@@ -29,6 +37,7 @@ app.use('/analyze', analyzeQueryRoutes);
 app.use('/manufacturers', manufacturerRoutes);
 app.use('/locations', locationRoutes);
 app.use('/hardware-statuses', hardwareStatusRoutes);
+app.use('/roles', roleRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server läuft auf Port ${PORT}

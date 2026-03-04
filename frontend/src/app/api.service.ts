@@ -71,10 +71,31 @@ export class ApiService {
     return this.delete<any>(`users/${id}`);
   }
 
+  // role endpoints
+  getRoles(): Observable<any[]> {
+    return this.get<any[]>('roles');
+  }
+
+  getRoleById(id: string): Observable<any> {
+    return this.get<any>(`roles/${id}`);
+  }
+
+  createRole(data: any): Observable<any> {
+    return this.post<any>('roles', data);
+  }
+
+  updateRole(id: string, data: any): Observable<any> {
+    return this.put<any>(`roles/${id}`, data);
+  }
+
+  /* deleteRole(id: string): Observable<any> {
+    return this.delete<any>(`roles/${id}`);
+  } */ // Rollen werden aktuell nicht gelöscht, daher auskommentiert
+
   // 🔹 Fehlerhandling für alle API-Methoden
   private handleError(error: HttpErrorResponse) {
     console.error('API-Fehler:', error);
-    const message = error.error?.message || error.message || 'Fehler beim Laden der Daten.';
+    const message = error.error?.error || error.error?.message || error.message || 'Fehler beim Laden der Daten.';
     return throwError(() => new Error(message));
   }
 

@@ -17,6 +17,7 @@ export class RegisterComponent {
   acceptTerms = false;
   loading = false;
   showPassword = false;
+  // role selection disabled; backend assigns role 1 by default
 
   constructor(
     private api: ApiService,
