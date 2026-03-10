@@ -11,6 +11,11 @@ class Role {
     return rows[0];
   }
 
+  static async getRoleByName(name) {
+    const [rows] = await db.query("SELECT * FROM roles WHERE name = ?", [name]);
+    return rows[0];
+  }
+
   static async createRole(name) {
     const [result] = await db.query("INSERT INTO roles (name) VALUES (?)", [name]);
     return { id: result.insertId, name };

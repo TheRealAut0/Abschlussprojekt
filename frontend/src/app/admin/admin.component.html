@@ -36,13 +36,13 @@
               <td>{{ user.email }}</td>
               <td>{{ user.role }}</td>
               <td class="center">
-                <input type="radio" [checked]="user.isAdmin" (change)="toggleRight(user, 'Admin', $event)" />
+                <input type="radio" [name]="'role-' + (user.id || user._id || user.email)" [checked]="user.isAdmin" (change)="toggleRight(user, 'Admin', $event)" />
               </td>
               <td class="center">
-                <input type="radio" [checked]="user.isEditor" (change)="toggleRight(user, 'Editor', $event)" />
+                <input type="radio" [name]="'role-' + (user.id || user._id || user.email)" [checked]="user.isEditor" (change)="toggleRight(user, 'Editor', $event)" />
               </td>
               <td class="center">
-                <input type="radio" [checked]="user.isViewer" (change)="toggleRight(user, 'Viewer', $event)" />
+                <input type="radio" [name]="'role-' + (user.id || user._id || user.email)" [checked]="user.isViewer" (change)="toggleRight(user, 'Viewer', $event)" />
               </td>
               <td class="actions-col">
                 <button class="btn small" (click)="editUser(user)">Bearbeiten</button>

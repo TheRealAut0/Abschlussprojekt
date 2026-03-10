@@ -22,12 +22,31 @@ class User {
     return { id: result.insertId, email, first_name, last_name, role_id };
   }
 
-  static async updateUser(id, {email, password, first_name, last_name, role_id }) {
-    const query = "UPDATE user SET email = ?, password = ?, first_name = ?, last_name = ?, role_id = ? WHERE id = ?";
-    const [result] = await db.query(query, [email, password, first_name, last_name, role_id, id]);
+  static async updateUser(id, updates) {
+    // Baue dynamisch die UPDATE Query auf basierend auf den übergebenen Fields
+    const allowedFields = ['email', 'password', 'first_name', 'last_name', 'role_id'];
+    const fields = [];
+    const values = [];
+    
+    for (const field of allowedFields) {
+      if (field in updates) {
+        fields.push(`${field} = ?`);
+        values.push(updates[field]);
+      }
+    }
+    
+    if (fields.length === 0) {
+      // Keine Felder zum Update
+      return await User.getUserById(id);
+    }
+    
+    values.push(id);
+    const query = `UPDATE user SET ${fields.join(', ')} WHERE id = ?`;
+    const [result] = await db.query(query, values);
+    
     if (result.affectedRows === 0) return null;
-    return { id, email, password, first_name, last_name, role_id };
-}
+    return await User.getUserById(id);
+  }
 
   static async getUserById(id) {
     const [rows] = await db.query("SELECT * FROM user WHERE id = ?", [id]);

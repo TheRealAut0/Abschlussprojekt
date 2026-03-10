@@ -42,25 +42,33 @@ exports.updateUser = async (req, res) => {
 
   // Nur diese Felder aus dem Body in die DB übernehmen (Whitelist)
   // only allow certain fields to be updated
-  const allowed = ['first_name', 'last_name', 'email', 'role_id'];
+  const allowed = ['first_name', 'last_name', 'email', 'role_id', 'role'];
   const updates = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(req.body, key)) {
-      updates[key] = req.body[key];
+      // Falls 'role' (Rollenname) gesendet wird, konvertiere in role_id
+      if (key === 'role') {
+        // 'role' wird später als Rollenname behandelt, vorerst speichern
+        updates['role_name'] = req.body[key];
+      } else {
+        updates[key] = req.body[key];
+      }
     }
   }
 
-  // Falls Passwort explizit geändert werden soll, handle das getrennt (hashen!)
-  if (req.body.password) {
-    // Beispiel: falls du bcrypt benutzt, hier hashen und in updates.password setzen
-    // const hashed = await bcrypt.hash(req.body.password, 10);
-    // updates.password = hashed;
-    // Wenn du Passwort-Update nicht erlauben willst, lasse es weg.
-  }
-
   try {
-    // Verwende $set, damit nur die angegebenen Felder überschrieben werden
-    const updatedUser = await User.findByIdAndUpdate(id, { $set: updates }, { new: true });
+    // Wenn Rollenname gesendet wurde, konvertiere in role_id
+    if (updates.role_name) {
+      const Role = require("../models/roleModel");
+      const role = await Role.getRoleByName(updates.role_name);
+      if (role) {
+        updates.role_id = role.id;
+      }
+      delete updates.role_name;
+    }
+
+    // Verwende MySQL UPDATE statt MongoDB
+    const updatedUser = await User.updateUser(id, updates);
     if (!updatedUser) return res.status(404).json({ message: 'User not found' });
     res.json(updatedUser);
   } catch (err) {

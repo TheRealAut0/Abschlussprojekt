@@ -6,13 +6,17 @@ const {
     updateUser,
     deleteUser
 } = require("../controllers/userController");
+const verifyToken = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.get("/", getUsers);
+// POST /users — Registrierung OHNE Auth
 router.post("/", createUser);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+
+// Alle anderen Routes MIT Auth
+router.get("/", verifyToken, getUsers);
+router.get("/:id", verifyToken, getUserById);
+router.put("/:id", verifyToken, updateUser);
+router.delete("/:id", verifyToken, deleteUser);
 
 module.exports = router;
